@@ -20,7 +20,7 @@ function Catalog() {
   const [categoryId, setCategoryId] = useState("")
   // Fetch All Categories
   useEffect(() => {
-    ;(async () => {
+    (async () => {
       try {
         const res = await apiConnector("GET", categories.CATEGORIES_API)
         const category_id = res?.data?.data?.filter(

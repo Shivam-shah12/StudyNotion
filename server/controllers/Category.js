@@ -6,16 +6,17 @@ function getRandomInt(max) {
 exports.createCategory = async (req, res) => {
   try {
     const { name, description } = req.body
+    console.log(req.body);
     if (!name) {
       return res
         .status(400)
-        .json({ success: false, message: "All fields are required" })
+        .json({ success: false, message: "All fields are required pp" })
     }
     const CategorysDetails = await Category.create({
       name: name,
       description: description,
     })
-    console.log(CategorysDetails)
+    console.log("ww",CategorysDetails)
     return res.status(200).json({
       success: true,
       message: "Categorys Created Successfully",

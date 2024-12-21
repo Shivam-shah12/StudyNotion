@@ -226,7 +226,7 @@ export default function CourseInformationForm() {
           Course Category <sup className="text-pink-200">*</sup>
         </label>
         <select
-          {...register("courseCategory", { required: true })}
+          {...register("courseCategory", { required: false })}
           defaultValue=""
           id="courseCategory"
           className="form-style w-full"
@@ -258,9 +258,11 @@ export default function CourseInformationForm() {
         getValues={getValues}
       />
       {/* Course Thumbnail Image */}
+      {/* <Upload/> */}
+      
       <Upload
         name="courseImage"
-        label="Course Thumbnail"
+        label="CourseImage"
         register={register}
         setValue={setValue}
         errors={errors}

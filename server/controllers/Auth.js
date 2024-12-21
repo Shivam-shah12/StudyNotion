@@ -45,7 +45,14 @@ exports.signup = async (req, res) => {
           "Password and Confirm Password do not match. Please try again.",
       })
     }
-
+    console.log(firstName,
+      lastName,
+      email,
+      password,
+      confirmPassword,
+      accountType,
+      contactNumber,
+      otp);
     // Check if user already exists
     const existingUser = await User.findOne({ email })
     if (existingUser) {
@@ -163,10 +170,12 @@ exports.login = async (req, res) => {
         user,
         message: `User Login Success`,
       })
+      console.log(token);
     } else {
       return res.status(401).json({
         success: false,
         message: `Password is incorrect`,
+        
       })
     }
   } catch (error) {
@@ -181,10 +190,12 @@ exports.login = async (req, res) => {
 // Send OTP For Email Verification
 exports.sendotp = async (req, res) => {
   try {
-    const { email } = req.body
+    const { email } = req.body;
+    // console.log(req);
 
     // Check if user is already present
     // Find user with provided email
+    // console.log(User);
     const checkUserPresent = await User.findOne({ email })
     // to be used in case of signup
 
@@ -203,9 +214,9 @@ exports.sendotp = async (req, res) => {
       specialChars: false,
     })
     const result = await OTP.findOne({ otp: otp })
-    console.log("Result is Generate OTP Func")
-    console.log("OTP", otp)
-    console.log("Result", result)
+    // console.log("Result is Generate OTP Func")
+    // console.log("OTP", otp)
+    // console.log("Result", result)
     while (result) {
       otp = otpGenerator.generate(6, {
         upperCaseAlphabets: false,
